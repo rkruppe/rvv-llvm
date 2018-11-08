@@ -9,6 +9,7 @@ declare <scalable 1 x i32> @llvm.riscv.vmul(<scalable 1 x i32>, <scalable 1 x i3
 declare <scalable 1 x i32> @llvm.riscv.vand(<scalable 1 x i32>, <scalable 1 x i32>, i32)
 declare <scalable 1 x i32> @llvm.riscv.vor(<scalable 1 x i32>, <scalable 1 x i32>, i32)
 declare <scalable 1 x i32> @llvm.riscv.vxor(<scalable 1 x i32>, <scalable 1 x i32>, i32)
+declare <scalable 1 x i32> @llvm.riscv.vaddi(<scalable 1 x i32>, i32, i32)
 declare <scalable 1 x i32> @llvm.riscv.vlw(i32*, i32)
 declare void @llvm.riscv.vsw(i32*, <scalable 1 x i32>, i32)
 
@@ -56,6 +57,7 @@ loop:
 	%v.R4 = call <scalable 1 x i32> @llvm.riscv.vand(<scalable 1 x i32> %v.R3, <scalable 1 x i32> %v.B, i32 %vl)
 	%v.R5 = call <scalable 1 x i32> @llvm.riscv.vor(<scalable 1 x i32> %v.R4, <scalable 1 x i32> %v.B, i32 %vl)
 	%v.R6 = call <scalable 1 x i32> @llvm.riscv.vxor(<scalable 1 x i32> %v.R5, <scalable 1 x i32> %v.B, i32 %vl)
+	%v.R7 = call <scalable 1 x i32> @llvm.riscv.vaddi(<scalable 1 x i32> %v.R6, i32 127, i32 %vl)
 
 	call void @llvm.riscv.vsw(i32* %R, <scalable 1 x i32> %v.R6, i32 %vl)
 	%n.rem = sub i32 %n, %vl
