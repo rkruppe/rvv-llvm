@@ -61,7 +61,7 @@ let hasSideEffects = 0, mayLoad = 1, mayStore = 0 in
 class VALU_ri<bits<4> funct4, bits<1> funct1, string opcodestr>
     : RVInstVI<funct4, funct1, RVV_Unmasked, OPC_VEC_OP,
                (outs VR:$vd), (ins VR:$vs1, simm8:$imm8, VLR:$vl),
-               opcodestr, "$vd, $vs1, ${imm8}">;
+               opcodestr, "$vd, $vs1, $imm8">;
 
 let hasSideEffects = 0, mayLoad = 1, mayStore = 0 in
 class VLoad_UnitStride<bits<2> funct2, bits<3> funct3, string opcodestr>
@@ -216,11 +216,7 @@ def VSW_ic : ImplicitVCFGPseudo<VSW>;
 class PatVrVr<SDPatternOperator OpNode, ImplicitVCFGPseudo Inst>
     : Pat<(OpNode VR:$rs1, VR:$rs2, VLR:$vl), (Inst VR:$rs1, VR:$rs2, VLR:$vl)>;
 
-class PatVrIm<SDPatternOperator OpNode, ImplicitVCFGPseudo Inst>
-    : Pat<(OpNode VR:$rs1, simm8:$imm8, VLR:$vl), (Inst VR:$rs1, simm8:$imm8, VLR:$vl)>;
-
 def : PatVrVr<int_riscv_vadd, VADD_ic>;
-def : PatVrIm<int_riscv_vaddi, VADDI_ic>;
 def : PatVrVr<int_riscv_vsub, VSUB_ic>;
 def : PatVrVr<int_riscv_vmul, VMUL_ic>;
 def : PatVrVr<int_riscv_vand, VAND_ic>;
