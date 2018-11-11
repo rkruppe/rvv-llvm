@@ -37,7 +37,7 @@ class RVInstVR<bits<7> funct7, bits<1> funct1, RVVMaskCond m, RISCVOpcode opcode
 
 class RVInstVI<bits<4> funct4, bits<1> funct1, RVVMaskCond m, RISCVOpcode opcode,
                dag outs, dag ins, string opcodestr, string argstr>
-    : RVInst<outs, ins, opcodestr, argstr, [], InstFormatR> {
+    : RVInst<outs, ins, opcodestr, argstr, [], InstFormatOther> {
   bits<8> simm8;
   bits<5> vs1;
   bits<5> vd;
